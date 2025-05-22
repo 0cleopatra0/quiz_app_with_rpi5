@@ -1,0 +1,36 @@
+{
+  "name": "naspi-quiz-pi",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "dev:tailwind": "tailwindcss -i ./style.css -o ./output.css --watch",
+    "watch:css": "tailwindcss -i ./style.css -o ./style.css --watch",
+    "dev": "concurrently \"npm run watch:css\" \"npm run start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rajchal/naspi-quiz-pi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Rajchal/naspi-quiz-pi/issues"
+  },
+  "homepage": "https://github.com/Rajchal/naspi-quiz-pi#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "concurrently": "^9.1.2",
+    "electron": "^35.1.5",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.3"
+  },
+  "description": "",
+  "dependencies": {
+    "socket.io-client": "^4.8.1"
+  }
+}
+
