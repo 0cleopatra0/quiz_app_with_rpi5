@@ -13,11 +13,11 @@ A Raspberry Pi-based quiz application designed for educational and entertainment
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/Rajchal/naspi-quiz-pi.git
+    git clone https://github.com/0cleopatra0/AI-integrated-Raspberry-Pi.git
     ```
 2. Navigate to the project directory:
     ```bash
-    cd naspi-quiz-pi
+    cd AI-integrated-Raspberry-Pi
     ```
 3. Install dependencies:
     ```bash
@@ -59,6 +59,6 @@ Contributions are welcome! Please follow these steps:
     ```
 5. Open a pull request.
 
+## Contact
 
-
-
+For questions or suggestions, feel free to reach out at **nidxaai@gmail.com**.
