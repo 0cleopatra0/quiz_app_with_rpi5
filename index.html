@@ -1,25 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>LLM App</title>
+  <link rel="stylesheet" href="style.css" />
   <script defer src="renderer.js"></script>
-  <link href="style.css" rel="stylesheet">
 </head>
-<body class="bg-black text-white font-sans p-6">
-  <div id="image-container" class="hidden text-center text-3xl">Loading...</div>
+<body>
+  <div id="app-container">
+    <header>
+      <h1>LLM Interactive App</h1>
+    </header>
 
-  <div id="question-container">
-    <h2 class="text-2xl mb-4">Live Questions:</h2>
-    <ul id="questionList" class="space-y-4"></ul>
-  </div>
+    <section id="image-container" class="hidden">
+      <p>Loading...</p>
+    </section>
 
-  <div class="mt-10">
-    <input id="user_id" placeholder="User ID" class="p-2 rounded text-black" />
-    <input id="question" placeholder="Enter a question" class="p-2 rounded text-black" />
-    <button id="askBtn" class="bg-blue-600 px-4 py-2 rounded ml-2">Ask</button>
-    <div id="response" class="mt-4 text-green-400"></div>
+    <section id="questions-section">
+      <h2>Live Questions:</h2>
+      <ul id="questionList"></ul>
+    </section>
+
+    <section id="ask-section">
+      <input id="user_id" type="text" placeholder="User ID" autocomplete="off" />
+      <input id="question" type="text" placeholder="Enter a question" autocomplete="off" />
+      <button id="askBtn">Ask</button>
+      <div id="response"></div>
+    </section>
   </div>
 </body>
 </html>

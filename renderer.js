@@ -1,67 +1,121 @@
-import { io } from "socket.io-client";
+/* style.css */
 
-const user_id = "your_user_id";  // Replace dynamically if needed
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
-async function fetchQuestionList() {
-  try {
-    const res = await fetch("http://localhost:5000/questions");
-    const data = await res.json();
-    const list = document.getElementById("questionList");
-    list.innerHTML = "";
-
-    data.questions.forEach((q) => {
-      const li = document.createElement("li");
-      li.className = "bg-gray-800 p-4 rounded-lg";
-      li.textContent = `${new Date(q.timestamp).toLocaleTimeString()} — ${q.question}`;
-      list.appendChild(li);
-    });
-  } catch (e) {
-    console.error("Failed to fetch questions list", e);
-  }
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #121212;
+  color: #E0E0E0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 20px;
 }
 
-setInterval(fetchQuestionList, 3000);
-
-function displayAnswer(answer) {
-  const ques = document.getElementById("question");
-  ques.textContent = "Answer:";
-  const answers = document.getElementById("answers") || document.createElement("ul");
-  answers.id = "answers";
-  answers.innerHTML = `
-    <li class="col-span-2 bg-green-900 p-6 rounded-lg text-xl animate-fadeIn">
-      ${answer}
-    </li>
-  `;
-  if (!document.getElementById("answers")) {
-    document.body.appendChild(answers);
-  }
+#app-container {
+  width: 480px;
+  background-color: #1E1E1E;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.7);
+  padding: 30px;
 }
 
-document.getElementById("askBtn").addEventListener("click", async () => {
-  const userId = document.getElementById("user_id").value.trim();
-  const question = document.getElementById("question").value.trim();
-  const responseDiv = document.getElementById("response");
+header h1 {
+  font-weight: 600;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #90CAF9;
+  text-align: center;
+}
 
-  if (!userId || !question) {
-    responseDiv.textContent = "Please provide both user ID and question.";
-    return;
-  }
+#image-container {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #90CAF9;
+  margin-bottom: 25px;
+}
 
-  responseDiv.textContent = "Thinking...";
+.hidden {
+  display: none;
+}
 
-  await fetch("http://localhost:5000/ask_async", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ user_id: userId, question }),
-  });
+#questions-section h2 {
+  margin-bottom: 12px;
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: #BBDEFB;
+  border-bottom: 1px solid #444;
+  padding-bottom: 6px;
+}
 
-  const interval = setInterval(async () => {
-    const res = await fetch(`http://localhost:5000/check_answer?user_id=${userId}&question=${encodeURIComponent(question)}`);
-    const data = await res.json();
+#questionList {
+  list-style: none;
+  padding-left: 0;
+  max-height: 220px;
+  overflow-y: auto;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background-color: #292929;
+}
 
-    if (data.ready) {
-      clearInterval(interval);
-      responseDiv.textContent = data.answer;
-    }
-  }, 3000);
-});
+#questionList li {
+  padding: 10px 12px;
+  border-bottom: 1px solid #3A3A3A;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease;
+}
+
+#questionList li:last-child {
+  border-bottom: none;
+}
+
+#questionList li:hover {
+  background-color: #3A5BB8;
+  cursor: default;
+  color: #E3F2FD;
+}
+
+#ask-section {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#ask-section input[type="text"] {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: none;
+  font-size: 1rem;
+  color: #121212;
+}
+
+#ask-section input[type="text"]::placeholder {
+  color: #666;
+}
+
+#askBtn {
+  padding: 12px;
+  border: none;
+  background-color: #1976D2;
+  color: white;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
+}
+
+#askBtn:hover {
+  background-color: #115293;
+}
+
+#response {
+  margin-top: 20px;
+  min-height: 40px;
+  font-size: 1.1rem;
+  color: #A5D6A7;
+  white-space: pre-wrap;
+}
